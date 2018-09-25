@@ -4,7 +4,7 @@
 
 <script>
 export default {
-  name: 'HelloWorld',
+  name: 'Nav',
   data() {
     return {};
   }
@@ -13,3 +13,4 @@ export default {
 
 <style scoped>
 </style>
+

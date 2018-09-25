@@ -1,14 +1,19 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-    <router-view/>
+    
+    <!-- <router-view/> -->
   </div>
 </template>
 
 <script>
+Vue.use(BootstrapVue);
+import Nav from './components/Nav';
 export default {
-  name: 'App'
-}
+  name: 'Nav',
+  components: {
+    Nav
+  }
+};
 </script>
 
 <style>
