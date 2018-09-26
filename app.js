@@ -38,7 +38,7 @@ app.get('/', (req,res) => {
 
 //create
 app.post('/', (req, res) => {
-    Users.create(req.body)
+    Content.create(req.body)
         .then(newUser => res.status(201).json({newUser}))
 })
 
