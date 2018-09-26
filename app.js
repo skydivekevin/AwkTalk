@@ -16,7 +16,7 @@ app.use(function (err, req, res, next) {
     }
 })  
 
-mongoose.connect(process.env.MONGODB,{ useNewUrlParser: true })
+mongoose.connect(process.env.MONGODB_URI,{ useNewUrlParser: true })
 const Schema = new mongoose.Schema({
     user_name: String,
     email: String
