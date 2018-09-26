@@ -29,16 +29,16 @@ const contentSchema = new mongoose.Schema({
 })
 const Content = mongoose.model('Content', contentSchema)
 
-
+//Users
 //read
 app.get('/', (req,res) => {
-    Content.find({})
+    Users.find({})
         .then(users => res.json({users}))
 })
 
 //create
 app.post('/', (req, res) => {
-    Content.create(req.body)
+    Users.create(req.body)
         .then(newUser => res.status(201).json({newUser}))
 })
 
@@ -50,10 +50,34 @@ app.put('/:id', (req, res) => {
 
 //delete
 app.delete('/:id', (req, res) => {
-    Content.deleteOne({_id: req.params.id})
+    Users.deleteOne({_id: req.params.id})
         .then(deletedUser => res.status(201).json({deletedUser}))
 })
 
+//Content
+//read
+app.get('/content', (req,res) => {
+    Content.find({})
+        .then(Content => res.json({Content}))
+})
+
+//create
+app.post('/content', (req, res) => {
+    Content.create(req.body)
+        .then(newContent => res.status(201).json({newContent}))
+})
+
+//update
+app.put('/content/:id', (req, res) => {
+    Content.update({_id: req.params.id}, { $set: req.body})
+        .then(updatedContent => res.status(201).json({updatedContent}))
+})
+
+//delete
+app.delete('/content/:id', (req, res) => {
+    Content.deleteOne({_id: req.params.id})
+        .then(deletedContent => res.status(201).json({deletedContent}))
+})
 
 app.use((err,req,res,next)=>{
     res.status(err.status || 500).json({error:err})
