@@ -17,11 +17,18 @@ app.use(function (err, req, res, next) {
 })  
 
 mongoose.connect(process.env.MONGODB_URI,{ useNewUrlParser: true })
-const Schema = new mongoose.Schema({
+
+const userSchema = new mongoose.Schema({
     user_name: String,
     email: String
 })
-const Users = mongoose.model('Users', Schema)
+const Users = mongoose.model('Users', userSchema)
+
+const contentSchema = new mongoose.Schema({
+    topic: Object
+})
+const Content = mongoose.model('Content', contentSchema)
+
 
 //read
 app.get('/', (req,res) => {
