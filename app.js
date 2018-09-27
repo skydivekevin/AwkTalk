@@ -63,6 +63,11 @@ app.get('/content', (req,res) => {
         .then(Content => res.json({Content}))
 })
 
+app.get('/content/:topic', (req,res)=> {
+    Content.find({topic: req.params.topic})
+        .then(topic => res.status(201).json({topic}))
+})
+
 app.get('/content/:id', (req,res) => {
     Content.find({_id:req.params.id})
         .then(Content => res.json({Content}))
