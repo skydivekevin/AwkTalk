@@ -34,7 +34,7 @@ const Content = mongoose.model('Content', contentSchema)
 //Users
 //read
 app.get('/', (req,res) => {
-    Users.find({})
+    Users.find({},'user_name email',function(err,result){console.log(err)})
         .then(users => res.json({users}))
 })
 
@@ -59,19 +59,19 @@ app.delete('/:id', (req, res) => {
 //Content
 //read
 app.get('/content', (req,res) => {
-    Content.find({})
+    Content.find({},'topic subject points',function(err,result){console.log(err)})
         .then(Content => res.json({Content}))
 })
 
 app.get('/content/:topic', (req,res)=> {
-    Content.find({topic: req.params.topic})
+    Content.find({topic: req.params.topic},'topic subject points',function(err,result){console.log(err)})
         .then(topic => res.status(201).json({topic}))
 })
 
-app.get('/content/:id', (req,res) => {
-    Content.find({_id:req.params.id})
-        .then(Content => res.json({Content}))
-})
+// app.get('/content/:id', (req,res) => {
+//     Content.find({_id:req.params.id},'topic subject points',function(err,result){console.log(err)})
+//         .then(Content => res.json({Content}))
+// })
 
 //create
 app.post('/content', (req, res) => {
