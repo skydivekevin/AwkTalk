@@ -25,7 +25,9 @@ const userSchema = new mongoose.Schema({
 const Users = mongoose.model('Users', userSchema)
 
 const contentSchema = new mongoose.Schema({
-    Sports : Array
+    topic : String,
+    subject : String,
+    points : Array
 })
 const Content = mongoose.model('Content', contentSchema)
 
@@ -58,6 +60,11 @@ app.delete('/:id', (req, res) => {
 //read
 app.get('/content', (req,res) => {
     Content.find({})
+        .then(Content => res.json({Content}))
+})
+
+app.get('/content/:id', (req,res) => {
+    Content.find({_id:req.params.id})
         .then(Content => res.json({Content}))
 })
 
